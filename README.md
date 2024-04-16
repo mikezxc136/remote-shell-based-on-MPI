@@ -7,16 +7,22 @@ This project is a simple remote shell system based on MPI (Message Passing Inter
 ### Requirements
 - Install MPI on your computer.
 - Install the `mpi4py` library for Python. You can install it using the following command:
-pip install mpi4py
 
+```bash
+pip install mpi4py
+```
 
 ### Running the Program
 - Run the master node:
 
+```bash
 mpirun -np 1 python master_node.py
+```
 
 - Run the worker nodes:
+```bash
 mpirun -np N python worker_node.py
+```
 
 where N is the number of worker nodes you want to run.
 
