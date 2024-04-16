@@ -1,23 +1,35 @@
 from mpi4py import MPI
+from mpi4py.futures import MPICommExecutor
 
-# Khởi tạo MPI
+
+def execute_command(command):
+    # Thực hiện logic thực thi lệnh ở đây
+    # Trong ví dụ này, tôi chỉ trả về kết quả là phản hồi giả
+    return f"Worker {rank} received command: {command}"
+
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
-size = comm.Get_size()
 
-if rank == 0:  # Nút chính (master)
-    while True:
-        command = input("Enter command: ")
-        for worker_rank in range(1, size):
-            comm.send(command, dest=worker_rank, tag=1)
-        if command.lower() == "exit":
-            break
+if rank == 0:  # Master node
+    with MPICommExecutor(MPI.COMM_WORLD) as executor:
+        while True:
+            command = input("Enter command: ")
+            if command.lower() == "exit":
+                break
+            else:
+                # Gửi lệnh đến các worker nodes và nhận kết quả
+                futures = [executor.submit(execute_command, command) for _ in range(comm.Get_size() - 1)]
+                for future in futures:
+                    print(future.result())
 else:
     while True:
+        # Worker nodes chỉ chờ nhận lệnh từ master node và thực thi
         command = comm.recv(source=0, tag=1)
         if command.lower() == "exit":
             break
         else:
-            # Thực thi lệnh và gửi kết quả về cho master
-            result = "Worker {} received command: {}".format(rank, command)
+            # Thực thi lệnh và gửi kết quả về cho master node
+            result = execute_command(command)
             comm.send(result, dest=0, tag=2)
+
+
