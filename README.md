@@ -12,11 +12,11 @@ This project is a simple remote shell system based on MPI (Message Passing Inter
 pip install mpi4py
 ```
 
-## What is mpi4py?
+### What is mpi4py?
 
 MPI for Python provides MPI bindings for the Python language, allowing programmers to exploit multiple processor computing systems. mpi4py is constructed on top of the MPI-1/2 specifications and provides an object oriented interface which closely follows MPI-2 C++ bindings.
 
-## Documentation for mpi4py
+### Documentation for mpi4py
 
 The documentation for mpi4py can be found [here](https://mpi4py.scipy.org/).
 
@@ -32,28 +32,17 @@ In particular, the section for Class Comm lists all the methods you can use with
 
 [Class Comm API Reference](https://mpi4py.scipy.org/docs/apiref/mpi4py.MPI.Comm-class.html)
 
-## Running Python Scripts with MPI
-
-Python programs that use MPI commands must be run using an MPI interpreter, which is provided with the command `mpirun`. On some systems this command is instead called `mpiexec` and mpi4py seems to include both.
-
-Make sure your environment is correct by checking that `mpirun` is in your anaconda directory for `geo_scipy` by using the `which` Unix command:
-
-
 ### Running the Program
-- Run the master node:
+- Run the python script on MPI:
 
 ```bash
-mpirun -np 1 python master_node.py
+mpirun -np N python pythonscript.py
 ```
 
-- Run the worker nodes:
-```bash
-mpirun -np N python worker_node.py
-```
+where N is the number of worker nodes you want to run. pythonscipt is a file that you want to run
 
-where N is the number of worker nodes you want to run.
-
-After running, you can input commands from the master node, and they will be sent to the worker nodes for execution.
+### Communicators and Ranks
+This example demonstrates basic MPI usage in Python using mpi4py. It prints out the rank of each process within the MPI communicator.
 
 ## Note
 - Ensure that you have correctly installed MPI and mpi4py before running the program.
