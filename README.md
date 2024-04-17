@@ -3,6 +3,10 @@
 ## Introduction
 This project is a simple remote shell system based on MPI (Message Passing Interface), allowing users to control and execute commands on different processing nodes in a parallel computing system.
 
+## What is mpi4py?
+
+MPI for Python provides MPI bindings for the Python language, allowing programmers to exploit multiple processor computing systems. mpi4py is constructed on top of the MPI-1/2 specifications and provides an object oriented interface which closely follows MPI-2 C++ bindings.
+
 ## Usage
 ### Requirements
 - Install MPI on your computer.
@@ -11,27 +15,6 @@ This project is a simple remote shell system based on MPI (Message Passing Inter
 ```bash
 pip install mpi4py
 ```
-
-### What is mpi4py?
-
-MPI for Python provides MPI bindings for the Python language, allowing programmers to exploit multiple processor computing systems. mpi4py is constructed on top of the MPI-1/2 specifications and provides an object oriented interface which closely follows MPI-2 C++ bindings.
-
-### Documentation for mpi4py
-
-The documentation for mpi4py can be found [here](https://mpi4py.scipy.org/).
-
-However, it is still a work in progress and much of it assumes you are already familiar with the MPI standard. Therefore, you will probably also need to consult the [MPI standard documentation](http://mpi-forum.org/docs/).
-
-The MPI docs only cover the C and Fortran implementations, but the extension to Python syntax is straightforward and in most cases much simpler than the equivalent C or Fortran statements.
-
-Another useful place to look for help is the API reference for mpi4py:
-
-[API Reference for mpi4py](https://mpi4py.scipy.org/docs/apiref/mpi4py.MPI-module.html)
-
-In particular, the section for Class Comm lists all the methods you can use with a communicator object:
-
-[Class Comm API Reference](https://mpi4py.scipy.org/docs/apiref/mpi4py.MPI.Comm-class.html)
-
 ### Running the Program
 - Run the python script on MPI:
 
@@ -80,20 +63,36 @@ Run the script using `mpirun` with exactly 4 processes:
 mpirun -n 4 python point-to-point.py
 ```
 
-
 ## Note
 - Ensure that you have correctly installed MPI and mpi4py before running the program.
 - This program is just a simple example and does not have high security. In a real-world environment, you need to consider issues such as authentication and access control.
 
 ## Directory Structure
-- `comm.py`: Source code for
-- `point-to-point.py`: Source code for
+- `comm.py`: Source code for communicators and ranks.
+- `point-to-point.py`: Source code for point-to-point communication.
+- `collective_xxxx.py`: Source code for collective communication.
 - `master_node.py`: Source code for the master node.
 - `worker_node.py`: Source code for the worker nodes.
 - `README.md`: This file.
 
 ## Extensions
 You can extend this project by adding features such as user authentication, access control, or improving the user interface to make the remote shell system more flexible and useful.
+
+## Documentation for mpi4py
+
+The documentation for mpi4py can be found [here](https://mpi4py.scipy.org/).
+
+However, it is still a work in progress and much of it assumes you are already familiar with the MPI standard. Therefore, you will probably also need to consult the [MPI standard documentation](http://mpi-forum.org/docs/).
+
+The MPI docs only cover the C and Fortran implementations, but the extension to Python syntax is straightforward and in most cases much simpler than the equivalent C or Fortran statements.
+
+Another useful place to look for help is the API reference for mpi4py:
+
+[API Reference for mpi4py](https://mpi4py.scipy.org/docs/apiref/mpi4py.MPI-module.html)
+
+In particular, the section for Class Comm lists all the methods you can use with a communicator object:
+
+[Class Comm API Reference](https://mpi4py.scipy.org/docs/apiref/mpi4py.MPI.Comm-class.html)
 
 ## Author
 This project is developed by Tuan.
