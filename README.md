@@ -9,7 +9,7 @@ MPI for Python provides MPI bindings for the Python language, allowing programme
 
 ## Usage
 ### Requirements
-- Install MPI on your computer.
+- Install [MPI](https://www.microsoft.com/en-us/download/details.aspx?id=57467) on your computer.
 - Install the `mpi4py` library for Python. You can install it using the following command:
 
 ```bash
