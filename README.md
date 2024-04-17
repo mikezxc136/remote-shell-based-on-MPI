@@ -25,6 +25,17 @@ mpirun -np N python pythonscript.py
 where N is the number of worker nodes you want to run. 
 `pythonscipt.py` is a file that you want to run
 
+### Master node and Worker node
+- Run the master node:
+
+mpirun -np 1 python master_node.py
+
+- Run the worker nodes:
+mpirun -np N python worker_node.py
+
+where N is the number of worker nodes you want to run.
+
+After running, you can input commands from the master node, and they will be sent to the worker nodes for execution.
 ### Communicators and Ranks
 This example demonstrates basic MPI usage in Python using mpi4py. It prints out the rank of each process within the MPI communicator.
 
