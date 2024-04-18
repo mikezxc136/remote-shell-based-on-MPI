@@ -19,7 +19,7 @@ pip install mpi4py
 - Run the python script on MPI:
 
 ```bash
-mpirun -np N python pythonscript.py
+mpiexec -np N python pythonscript.py
 ```
 
 where N is the number of worker nodes you want to run. 
@@ -28,21 +28,25 @@ where N is the number of worker nodes you want to run.
 ### Master node and Worker node
 - Run the master node:
 
-mpirun -np 1 python master_node.py
+```bash
+mpiexec -np 1 python master_node.py
+```
 
 - Run the worker nodes:
-mpirun -np N python worker_node.py
 
+```bash
+mpiexec -np N python worker_node.py
+```
 where N is the number of worker nodes you want to run.
 
 After running, you can input commands from the master node, and they will be sent to the worker nodes for execution.
 ### Communicators and Ranks
 This example demonstrates basic MPI usage in Python using mpi4py. It prints out the rank of each process within the MPI communicator.
 
-Run the script using mpirun with the desired number of processes. For example, to run with 4 processes:
+Run the script using mpiexec with the desired number of processes. For example, to run with 4 processes:
 
 ```bash
-mpirun -n 4 python comm.py
+mpiexec -n 4 python comm.py
 ```
 
 ### Point-to-Point Communication
@@ -54,9 +58,9 @@ This code snippet showcases how to use MPI (Message Passing Interface) for inter
 - Process 0 generates data and sends it to process 1 using `comm.send()` and `comm.Send()`.
 - Process 1 receives the data from process 0 using `comm.recv()` and `comm.Recv()`.
 
-Run the script using `mpirun` with exactly 2 processes:
+Run the script using `mpiexec` with exactly 2 processes:
 ```bash
-mpirun -n 2 python point-to-point.py
+mpiexec -n 2 python point-to-point.py
 ```
 
 ### Collective Communication
@@ -69,9 +73,9 @@ Reduction: Reduction aggregates values from all processes in an array and reduce
 
 These collective communication operations facilitate efficient parallel computing by enabling processes to exchange data and synchronize their computations.
 
-Run the script using `mpirun` with exactly 4 processes:
+Run the script using `mpiexec` with exactly 4 processes:
 ```bash
-mpirun -n 4 python point-to-point.py
+mpiexec -n 4 python collective_xxxx.py
 ```
 
 ## Note
